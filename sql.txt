@@ -1,0 +1,55 @@
+create database hostel;
+use hostel;
+
+CREATE TABLE wardens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
+);
+INSERT INTO wardens (username, password, email) VALUES
+  ('warden1', 'password1', 'warden1@example.com'),
+  ('warden2', 'password2', 'warden2@example.com'),
+  ('warden3', 'password3', 'warden3@example.com'),
+  ('warden4', 'password4', 'warden4@example.com'),
+  ('warden5', 'password5', 'warden5@example.com'),
+  ('warden6', 'password6', 'warden6@example.com'),
+  ('warden7', 'password7', 'warden7@example.com'),
+  ('warden8', 'password8', 'warden8@example.com'),
+  ('warden9', 'password9', 'warden9@example.com'),
+  ('warden10', 'password10', 'warden10@example.com');
+
+-- Create the rooms table
+CREATE TABLE rooms (
+  room_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  room_type VARCHAR(255) NOT NULL,
+  room_number INT(11) NOT NULL,
+  max_capacity INT(11) NOT NULL
+);
+
+-- Create the students table with room_id as a foreign key
+CREATE TABLE students (
+  stud_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  room_id INT(11) NOT NULL,
+  dept VARCHAR(255) NOT NULL,
+  year INT(11) NOT NULL,
+  gender VARCHAR(10) NOT NULL,
+  FOREIGN KEY (room_id) REFERENCES rooms(room_id)
+);
+
+-- Insert sample values into the rooms table
+INSERT INTO rooms (room_type, room_number, max_capacity) VALUES
+  ('Single', 101, 1),
+  ('Double', 102, 2),
+  ('Double', 103, 2),
+  ('Triple', 104, 3),
+  ('Triple', 105, 3);
+
+-- Insert sample values into the students table
+INSERT INTO students (name, room_id, dept, year, gender) VALUES
+  ('John Doe', 1, 'Computer Science', 2, 'Male'),
+  ('Jane Smith', 2, 'Electrical Engineering', 3, 'Female'),
+  ('Michael Johnson', 3, 'Mechanical Engineering', 4, 'Male'),
+  ('Emily Williams', 4, 'Chemistry', 1, 'Female'),
+  ('David Brown', 5, 'Physics', 2, 'Male');
